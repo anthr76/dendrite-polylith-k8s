@@ -14,3 +14,6 @@ resources:
   - ../base/signing-key-server
   - ../base/sync-api
   - ../base/user-api
+images:
+  - name: dendrite-polylith
+    newTag: v0.3.11
