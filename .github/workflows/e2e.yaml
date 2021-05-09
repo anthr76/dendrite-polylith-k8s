@@ -19,6 +19,9 @@ jobs:
         with:
           version: "v0.10.0"
           image: "kindest/node:v1.20.2"
+      - name: Deploy dendrite staging
+        run: |
+          kubectl apply -k ./dendrite/dev/
       - name: Verify dendrite deployment
         run: |
           kubectl wait pods --selector=k8s-app=dendrite --for=condition=ready --timeout=1m

@@ -5,7 +5,7 @@ metadata:
   labels:
     app: dendrite
     k8s-app: dendrite
-  name: dendrite-keyserver
+  name: dendrite-mediaapi
   namespace: default
 spec:
   selector:
