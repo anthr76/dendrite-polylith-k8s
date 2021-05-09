@@ -7,14 +7,13 @@
   "timezone": "America/New_York",
   "dependencyDashboard": true,
   "dependencyDashboardTitle": "Renovate Dashboard",
-  // "gitAuthor": "Anthony Rabbito <hello@anthonyrabbito.com>",
-  // "commitBody": "Signed-off-by: Anthony Rabbito <hello@anthonyrabbito.com>",
   // Do not notify on closed unmerged PRs
   "suppressNotifications": ["prIgnoreNotification"],
   // Do not rebase PRs
   "rebaseWhen": "conflicted",
   "assignees": ["@anthr76"],
   "reviewersFromCodeOwners": true,
+  // TODO when HRs are added
   "helm-values": {
     "fileMatch": ["gitops/namespaces/.+\\.yaml$"]
   },
@@ -24,10 +23,6 @@
       "matchStrings": [
         // helm releases
         "registryUrl=(?<registryUrl>.*?)\n *chart: (?<depName>.*?)\n *version: (?<currentValue>.*)\n",
-        // kube-prometheus-stack crd
-        "registryUrl=(?<registryUrl>.*?)\n *tag: (?<depName>[a-zA-Z-]+)-(?<currentValue>.*)\n",
-        // cert-manager crd
-        "registryUrl=(?<registryUrl>.*?) chart=(?<depName>.*?)\n.*\\/(?<currentValue>.*?)\\/",
       ],
       "datasourceTemplate": "helm"
     }
@@ -69,24 +64,6 @@
       "datasources": ["helm"],
       "updateTypes": ["patch"],
       "labels": ["renovate/helm-release", "dependency/patch"]
-    },
-    // Custom version schemes
-    {
-      "datasources": ["docker"],
-      "versionScheme": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)-(?<compatibility>.*)$",
-      "packageNames": ["blakeblackshear/frigate"]
-    },
-    // Pin package versions
-    {
-      "datasources": ["docker"],
-      "allowedVersions": "<4.3.0",
-      "packageNames": ["k8sathome/qbittorrent"]
-    },
-    // Version strategies
-    {
-      "datasources": ["docker"],
-      "versioning": "loose",
-      "packageNames": ["plexinc/pms-docker"]
     },
     // Enable auto-merge docker
     {
