@@ -24,7 +24,7 @@ jobs:
           kustomize build ./dendrite/dev/ | kubectl apply -f -
       - name: Verify dendrite deployment
         run: |
-          kubectl wait pods --selector=k8s-app=dendrite --for=condition=ready --timeout=1m
+          kubectl wait pods --selector=k8s-app=dendrite --for=condition=ready --timeout=60s
       - name: Debug failure
         if: failure()
         run: |
