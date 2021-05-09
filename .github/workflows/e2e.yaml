@@ -1,0 +1,31 @@
+name: e2e
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ '*' ]
+    tags-ignore: [ '*' ]
+
+jobs:
+  kubernetes:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup tools
+        uses: ./.github/actions/tools
+      - name: Setup Kubernetes
+        uses: engineerd/setup-kind@v0.5.0
+        with:
+          version: "v0.10.0"
+          image: "kindest/node:v1.20.2"
+      - name: Verify dendrite deployment
+        run: |
+          kubectl wait pods --selector=k8s-app=dendrite --for=condition=ready --timeout=1m
+      - name: Debug failure
+        if: failure()
+        run: |
+          kubectl get all
+          kubectl get deploy --selector=k8s-app=dendrite
+          kubectl logs deploy --selector=k8s-app=dendrite
+          kubectl get events
