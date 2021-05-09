@@ -1,0 +1,4 @@
+# See upstream docs since this is a config map we'll leave out as much data as possible.
+version: 1
+global:
+  server_name: localhost
