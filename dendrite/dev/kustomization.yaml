@@ -1,0 +1,16 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../base/appservice-api
+  - ../base/backend
+  - ../base/client-api
+  - ../base/edu-server
+  - ../base/federation-api
+  - ../base/federation-sender
+  - ../base/key-server
+  - ../base/media-api
+  - ../base/room-server
+  - ../base/signing-key-server
+  - ../base/sync-api
+  - ../base/user-api
