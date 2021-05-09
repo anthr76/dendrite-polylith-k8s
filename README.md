@@ -13,5 +13,5 @@ This deployment example is can be deployed across multiple clusters leaving it u
 
 - [Flux CI](https://github.com/fluxcd/flux2-kustomize-helm-example)
 - [K8s Monolith Deployment](https://github.com/sseneca/k8s-server/tree/master/dendrite)
-- [matrix](matrix.org)
+- [matrix](http://matrix.org)
 - [dendrite](https://github.com/matrix-org/dendrite)
