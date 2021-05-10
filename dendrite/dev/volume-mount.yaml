@@ -1,0 +1,20 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: dendrite
+    k8s-app: dendrite
+  name: dendrite
+spec:
+  template:
+    spec:
+      containers:
+      - name: dendrite-polylith
+        volumeMounts:
+        - name: dendrite-config
+          mountPath: /etc/dendrite/dendrite-config.yaml
+    volumes:
+    - name: dendrite-config
+      configMap:
+        name: dendrite-config
